@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>abastecimiento_basico</title>
+    <link rel="stylesheet" href="abastecimiento_basico.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="abastecimiento_basico.js" defer></script>
+</head>
+<body>
+    <!------------------------------------------>
+    <!--|estructuracion_abastecimiento_basico|-->
+    <!------------------------------------------>
+    <main class="app">
+        <!-- ENCABEZADO: título y descripción -->
+        <header class="encabezado">
+            <h1>Abastecimiento Básico</h1>
+            <p>Un producto necesita reposición cuando su stock está por debajo del mínimo.</p>
+        </header>
+        <!-- PANEL 1: formulario para agregar productos -->
+        <section class="panel">
+            <h2>Agregar producto</h2>
+            <!-- novalidate: la validación la hacemos nosotros con JavaScript -->
+            <form id="formulario" novalidate>
+                <!-- Campo: nombre del producto -->
+                <div class="campo">
+                    <label for="nombre">Nombre del producto</label>
+                    <input type="text" id="nombre" placeholder="Ej: Arroz 500 g"
+                        maxlength="40" autocomplete="off">
+                </div>
+                <!-- Fila con dos campos lado a lado -->
+                <div class="fila">
+                    <!-- Campo: unidades que hay ahora -->
+                    <div class="campo">
+                        <label for="actual">Stock actual</label>
+                        <input type="number" id="actual" placeholder="Ej: 4" min="0" step="1">
+                    </div>
+                    <!-- Campo: unidades mínimas que debería haber -->
+                    <div class="campo">
+                        <label for="minimo">Stock mínimo</label>
+                        <input type="number" id="minimo" placeholder="Ej: 10" min="1" step="1">
+                    </div>
+                </div>
+                <!-- Aquí JavaScript escribe los mensajes de error -->
+                <p id="mensaje" class="mensaje" role="alert"></p>
+                <!-- Botón que envía el formulario -->
+                <button type="submit" class="boton">Agregar producto</button>
+            </form>
+        </section>
+        <!-- PANEL 2: resumen con números -->
+        <section class="resumen">
+            <div class="dato">
+                <span>Productos</span>
+                <strong id="totalProductos">0</strong>
+            </div>
+            <div class="dato alerta">
+                <span>Por reponer</span>
+                <strong id="totalReponer">0</strong>
+            </div>
+        </section>
+        <!-- PANEL 3: lista de productos -->
+        <section class="panel">
+            <!-- Filtros: ver solo lo que falta o todo el inventario -->
+            <nav class="filtros">
+                <button class="filtro" data-filtro="reponer" type="button">Por reponer</button>
+                <button class="filtro" data-filtro="todos" type="button">Todos</button>
+            </nav>
+            <!-- Texto que se muestra cuando no hay productos para mostrar -->
+            <p id="vacio" class="vacio" hidden></p>
+            <!-- Lista donde JavaScript inserta cada producto -->
+            <ul id="lista" class="lista"></ul>
+        </section>
+    </main>
+</body>
+</html>

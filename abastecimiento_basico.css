@@ -1,0 +1,201 @@
+/* ===== VARIABLES DE COLOR (se usan en todo el archivo) ===== */
+:root {
+  --fondo: #f2f1ed;          /* fondo de la página */
+  --panel: #ffffff;          /* fondo de las tarjetas */
+  --texto: #232b33;          /* color principal del texto */
+  --texto-suave: #66707a;    /* textos secundarios */
+  --borde: #d9dcdf;          /* color de los bordes */
+  --acento: #25506b;         /* azul oscuro: botones y filtro activo */
+  --alerta: #c44a1c;         /* naranja rojizo: productos por reponer */
+  --ok: #2e7d4f;             /* verde: stock suficiente */
+}
+/* ===== REINICIO BÁSICO ===== */
+* {
+    box-sizing: border-box;    /* el padding no agranda los elementos */
+    margin: 0;
+    padding: 0;
+}
+/* ===== ESTILO GENERAL DE LA PÁGINA ===== */
+body {
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.5;
+    padding: 24px 16px;
+}
+/* Contenedor central con ancho máximo */
+.app {
+    max-width: 600px;
+    margin: 0 auto;
+}
+/* ===== ENCABEZADO ===== */
+.encabezado {
+    margin-bottom: 20px;
+}
+.encabezado h1 {
+    font-size: 2rem;
+    color: var(--acento);
+}
+.encabezado p {
+    color: var(--texto-suave);
+}
+/* ===== TARJETAS (paneles) ===== */
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+.panel h2 {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+}
+/* ===== FORMULARIO ===== */
+.campo {
+    display: flex;
+    flex-direction: column;    /* etiqueta arriba, input abajo */
+    gap: 4px;
+    margin-bottom: 12px;
+    flex: 1;                   /* reparte el espacio dentro de .fila */
+}
+.fila {
+    display: flex;
+    gap: 12px;
+}
+label {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+}
+input {
+    padding: 10px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+}
+input:focus {
+    outline: 2px solid var(--acento);
+    border-color: transparent;
+}
+/* Mensaje de error del formulario */
+.mensaje {
+    color: var(--alerta);
+    font-size: 0.9rem;
+    min-height: 1.3em;         /* evita que el diseño salte al aparecer */
+    margin-bottom: 8px;
+}
+/* ===== BOTONES ===== */
+.boton {
+    width: 100%;
+    padding: 12px;
+    background: var(--acento);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+/* ===== RESUMEN ===== */
+.resumen {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+.dato {
+    flex: 1;
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    flex-direction: column;
+}
+.dato span {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+}
+.dato strong {
+    font-size: 1.8rem;
+}
+/* El número de "Por reponer" resalta en naranja */
+.dato.alerta strong {
+    color: var(--alerta);
+}
+/* ===== FILTROS ===== */
+.filtros {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.filtro {
+    padding: 6px 14px;
+    background: none;
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--texto);
+}
+/* Filtro seleccionado (JavaScript le agrega la clase "activo") */
+.filtro.activo {
+    background: var(--acento);
+    border-color: var(--acento);
+    color: #fff;
+}
+/* ===== LISTA DE PRODUCTOS ===== */
+.lista {
+    list-style: none;
+}
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--borde);
+}
+.item:last-child {
+    border-bottom: none;
+}
+.item-nombre {
+    font-weight: bold;
+    word-break: break-word;    /* evita que nombres largos rompan el diseño */
+}
+.item-detalle {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+}
+/* Etiqueta de estado: por defecto verde (stock suficiente) */
+.etiqueta {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--ok);
+}
+/* Si necesita reposición, la etiqueta se ve naranja */
+.item.reponer .etiqueta {
+    color: var(--alerta);
+    font-weight: bold;
+}
+.item-acciones {
+    display: flex;
+    gap: 8px;
+}
+.btn-reponer,
+.btn-eliminar {
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: none;
+}
+.btn-reponer {
+    border: 1px solid var(--acento);
+    color: var(--acento);
+}
+.btn-eliminar {
+    border: 1px solid var(--borde);
+    color: var(--texto-suave);
+}
+.vacio {
+    color: var(--texto-suave);
+    padding: 8px 0;
+}
